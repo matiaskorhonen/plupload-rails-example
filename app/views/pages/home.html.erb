@@ -1,0 +1,20 @@
+<h1>PluploadRailsExample</h1>
+
+<p>
+  Files uploaded here will <strong>not</strong> be stored anywhere.
+</p>
+
+<div id="uploader"></div>
+
+<script>
+  $(function(){
+    $("#uploader").pluploadQueue({
+      runtimes: 'html5,flash,silverlight',
+      url: '<%= sink_hole_path %>',
+      multipart_params: {
+        '<%= request_forgery_protection_token %>': '<%= form_authenticity_token %>',
+        '<%= Rails.application.config.session_options[:key] %>': '<%= request.session_options[:id] %>'
+      }
+    });
+  });
+</script>
